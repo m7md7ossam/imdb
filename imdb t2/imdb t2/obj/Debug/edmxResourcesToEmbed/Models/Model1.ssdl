@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="boxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="e-mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="image" Type="image" Nullable="false" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Actors">
+    <Key>
+      <PropertyRef Name="IdActor" />
+    </Key>
+    <Property Name="IdActor" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="image" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Directors">
+    <Key>
+      <PropertyRef Name="IdDirector" />
+    </Key>
+    <Property Name="IdDirector" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="image" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totalRate" Type="int" Nullable="false" />
+    <Property Name="image" Type="image" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="decription" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Id">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+    <End Role="Actors" Type="Self.Actors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actors">
+        <PropertyRef Name="IdActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdActor">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="IdActor" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdDirector">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="IdDirector" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="boxModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Actors" EntityType="Self.Actors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directors" EntityType="Self.Directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Id" Association="Self.Id">
+      <End Role="Movie" EntitySet="Movie" />
+      <End Role="Actors" EntitySet="Actors" />
+    </AssociationSet>
+    <AssociationSet Name="IdActor" Association="Self.IdActor">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="IdDirector" Association="Self.IdDirector">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

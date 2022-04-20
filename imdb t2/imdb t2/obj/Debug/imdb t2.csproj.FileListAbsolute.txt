@@ -1,0 +1,73 @@
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\imdb t2.dll.config
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\imdb t2.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\imdb t2.pdb
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csc.exe
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csc.exe.config
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csc.rsp
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csi.exe
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csi.exe.config
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\csi.rsp
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CodeAnalysis.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.CSharp.Core.targets
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.Managed.Core.targets
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.AppContext.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Collections.Immutable.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Console.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Diagnostics.StackTrace.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.IO.Compression.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.IO.FileSystem.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.IO.Pipes.AccessControl.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.IO.Pipes.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Reflection.Metadata.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.AccessControl.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Claims.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Security.Principal.Windows.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Text.Encoding.CodePages.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.ValueTuple.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Xml.ReaderWriter.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Xml.XmlDocument.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Xml.XPath.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\System.Xml.XPath.XDocument.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\vbc.exe
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\vbc.exe.config
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\vbc.rsp
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\VBCSCompiler.exe
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\roslyn\VBCSCompiler.exe.config
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\EntityFramework.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\EntityFramework.SqlServer.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\Microsoft.Web.Infrastructure.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Helpers.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Mvc.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Razor.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.Deployment.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.Razor.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\EntityFramework.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\EntityFramework.SqlServer.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Razor.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.Deployment.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Webpages.Razor.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Helpers.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\System.Web.Mvc.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+H:\imdb-project\imdb\imdb t2\imdb t2\obj\Debug\imdb t2.csprojAssemblyReference.cache
+H:\imdb-project\imdb\imdb t2\imdb t2\obj\Debug\imdb t2.csproj.CoreCompileInputs.cache
+H:\imdb-project\imdb\imdb t2\imdb t2\obj\Debug\imdb t2.csproj.CopyComplete
+H:\imdb-project\imdb\imdb t2\imdb t2\obj\Debug\imdb t2.dll
+H:\imdb-project\imdb\imdb t2\imdb t2\obj\Debug\imdb t2.pdb

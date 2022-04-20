@@ -1,0 +1,112 @@
+﻿@model imdb_t2.Models.Movie
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Movie</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.totalRate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.totalRate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.image)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.image)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.time)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.time)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.decription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.decription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Actor.firstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Actor.firstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Actor1.firstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Actor1.firstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Director.firstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Director.firstName)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
