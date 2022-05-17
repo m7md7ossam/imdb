@@ -1,0 +1,367 @@
+﻿@model IEnumerable<IMDB.Models.Movie>
+@using IMDB.Controllers
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-2 w3l-movie-gride-agile">
+        <a href="@Url.Action("MovieProfile","Movie",new {id=item.id})" class="hvr-shutter-out-horizontal">
+            <img src="@item.Image" title="album-name" class="img-responsive" alt=" " />
+            <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+        </a>
+        <div class="mid-1 agileits_w3layouts_mid_1_home">
+            <div class="w3l-movie-text">
+                <h6><a href="@Url.Action("MovieProfile","Movie",new {id=item.id})">@item.Name</a></h6>
+            </div>
+            <div class="mid-2 agile_mid_2_home">
+                <p>@item.Year</p>
+                <div class="block-stars">
+                    <ul class="w3l-ratings">
+                        <li><i>@item.Rank </i><a href="#"> <i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    </ul>
+                    <ul class="w3l-ratings">
+                        @{
+
+                            if (((HomeController)this.ViewContext.Controller).IsExist(item.id))
+                            {
+                                if (((HomeController)this.ViewContext.Controller).IsLiked(item.id))
+                                {
+                                    <li><button id="likehide1_@item.id" onclick="Like(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-up"></i> </button></li>
+                                    <li><button id="dislikehide2_@item.id" onclick="Dislike(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-o-down"></i> </button></li>
+                                }
+                                else
+                                {
+                                    <li><button id="likehide3_@item.id" onclick="Like(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-o-up"></i> </button></li>
+                                    <li><button id="dislikehide4_@item.id" onclick="Dislike(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-down"></i> </button></li>
+                                }
+                            }
+                            else
+                            {
+                                <li><button id="likehide5_@item.id" onclick="Like(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-o-up"></i> </button></li>
+                                <li><button id="dislikehide6_@item.id" onclick="Dislike(@item.id)" style="border-style:none; background-color:white;"><i class="fa fa-thumbs-o-down"></i> </button></li>
+                            }
+                        }
+
+                        <li><button id="like_o_@item.id" onclick="Like(@item.id)" style="border-style:none; background-color:white; display:none;"><i class="fa fa-thumbs-o-up"></i> </button></li>
+                        <li><button id="like_@item.id" onclick="Like(@item.id)" style="border-style: none; background-color: white; display: none;"><i class="fa fa-thumbs-up"></i> </button></li>
+                        <li><button id="dislike_o_@item.id" onclick="Dislike(@item.id)" style="border-style: none; background-color: white; display: none;"><i class="fa fa-thumbs-o-down"></i> </button></li>
+                        <li><button id="dislike_@item.id" onclick="Dislike(@item.id)" style="border-style: none; background-color: white; display: none;"><i class="fa fa-thumbs-down"></i> </button></li>
+
+                    </ul>
+
+                </div>
+                <br />
+                <ul class="w3l-ratings" style="float:left;">
+                    @*@if (((HomeController)this.ViewContext.Controller).IsInFavorite(item.id))
+                        {
+                            <li><a href="@Url.Action("DeleteFromFavorite","Movie",new {id=item.id})"><i class="fa fa-heart"></i> </a></li>
+                            <li><button id="" onclick="" style="border-style: none; background-color: white; "><i class="fa fa-heart"></i></button></li>
+
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("AddToFavorite","Movie",new {id=item.id})"><i class="fa fa-heart-o"></i> </a></li>
+                            <li><button id="" onclick="" style="border-style: none; background-color: white; "><i class="fa fa-heart-o"></i></button></li>
+
+                        }
+                        <li><button id="" onclick="" style="border-style: none; background-color: white; display:none; "><i class="fa fa-heart"></i></button></li>
+                        <li><button id="" onclick="" style="border-style: none; background-color: white; display: none; "><i class="fa fa-heart-o"></i></button></li>*@
+
+                    @if (((HomeController)this.ViewContext.Controller).IsInFavorite(item.id))
+                    {
+                        <li><button id="favoritehide1_@item.id" onclick="DeleteFromFavorite(@item.id)" style="border-style: none; background-color: white; "><i class="fa fa-heart"></i></button></li>
+
+                    }
+                    else
+                    {
+                        <li><button id="favoritehide2_@item.id" onclick="AddToFavorite(@item.id)" style="border-style: none; background-color: white; "><i class="fa fa-heart-o"></i></button></li>
+
+                    }
+                    <li><button id="favorite_@item.id" onclick="DeleteFromFavorite(@item.id)" style="border-style: none; background-color: white; display:none; "><i class="fa fa-heart"></i></button></li>
+                    <li><button id="favorite_o_@item.id" onclick="AddToFavorite(@item.id)" style="border-style: none; background-color: white; display: none; "><i class="fa fa-heart-o"></i></button></li>
+
+                </ul>
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+        <div class="ribben">
+            <p>NEW</p>
+        </div>
+    </div>
+}
+<script>
+    function Like(id) {
+        $("#likehide1_" + id).hide();
+        $("#dislikehide2_" + id).hide();
+        $("#likehide3_" + id).hide();
+        $("#dislikehide4_" + id).hide();
+        $("#likehide5_" + id).hide();
+        $("#dislikehide6_" + id).hide();
+        var IsLiked;
+        var IsExist;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/Movie/Like/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsLiked/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsLiked = true;
+                        }
+                        else {
+                            IsLiked = false;
+                        }
+
+                    }
+
+                })
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsExist/" + id,
+                    success: function (response3) {
+
+                        if (response3 == "True") {
+                            IsExist = true;
+                        }
+                        else {
+                            IsExist = false;
+                        }
+
+                    }
+
+                })
+
+            }
+
+        })
+        $("#like_" + id).hide();
+        $("#like_o_" + id).hide();
+        $("#dislike_" + id).hide();
+        $("#dislike_o_" + id).hide();
+        if (IsExist == true) {
+
+            if (IsLiked == true) {
+                $("#like_" + id).show();
+                $("#dislike_o_" + id).show();
+            }
+            else {
+                $("#like_o_" + id).show();
+                $("#dislike_" + id).show();
+            }
+        }
+        else {
+            $("#like_o_" + id).show();
+            $("#dislike_o_" + id).show();
+        }
+
+
+        var temp = IsLiked;
+        var temp2 = IsExist;
+        var temp3 = IsLiked;
+
+    }
+
+</script>
+
+
+<script>
+    function Dislike(id) {
+        $("#likehide1_" + id).hide();
+        $("#dislikehide2_" + id).hide();
+        $("#likehide3_" + id).hide();
+        $("#dislikehide4_" + id).hide();
+        $("#likehide5_" + id).hide();
+        $("#dislikehide6_" + id).hide();
+        var IsLiked;
+        var IsExist;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/Movie/Dislike/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsLiked/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsLiked = true;
+                        }
+                        else {
+                            IsLiked = false;
+                        }
+
+                    }
+
+                })
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsExist/" + id,
+                    success: function (response3) {
+
+                        if (response3 == "True") {
+                            IsExist = true;
+                        }
+                        else {
+                            IsExist = false;
+                        }
+
+                    }
+
+                })
+
+            }
+
+        })
+        $("#like_" + id).hide();
+        $("#like_o_" + id).hide();
+        $("#dislike_" + id).hide();
+        $("#dislike_o_" + id).hide();
+        if (IsExist == true) {
+
+            if (IsLiked == true) {
+                $("#like_" + id).show();
+                $("#dislike_o_" + id).show();
+            }
+            else {
+                $("#like_o_" + id).show();
+                $("#dislike_" + id).show();
+            }
+        }
+        else {
+            $("#like_o_" + id).show();
+            $("#dislike_o_" + id).show();
+        }
+
+
+        var temp = IsLiked;
+        var temp2 = IsExist;
+        var temp3 = IsLiked;
+
+    }
+
+</script>
+
+<script>
+    function AddToFavorite(id) {
+        $("#favoritehide1_" + id).hide();
+        $("#favoritehide2_" + id).hide();
+        
+        var IsInFavorite;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/Movie/AddToFavorite/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsInFavorite/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsInFavorite = true;
+                        }
+                        else {
+                            IsInFavorite = false;
+                        }
+
+                    }
+
+                })
+
+
+            }
+
+        })
+        $("#favorite_" + id).hide();
+        $("#favorite_o_" + id).hide();
+
+
+
+        if (IsInFavorite == true) {
+            $("#favorite_" + id).show();
+        }
+        else {
+            $("#favorite_o_" + id).show();
+        }
+    
+
+    }
+
+</script>
+
+<script>
+    function DeleteFromFavorite(id) {
+        $("#favoritehide1_" + id).hide();
+        $("#favoritehide2_" + id).hide();
+
+        var IsInFavorite;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/Movie/DeleteFromFavorite/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/Home/IsInFavorite/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsInFavorite = true;
+                        }
+                        else {
+                            IsInFavorite = false;
+                        }
+
+                    }
+
+                })
+
+
+            }
+
+        })
+        $("#favorite_" + id).hide();
+        $("#favorite_o_" + id).hide();
+
+
+
+        if (IsInFavorite == true) {
+            $("#favorite_" + id).show();
+        }
+        else {
+            $("#favorite_o_" + id).show();
+        }
+
+
+    }
+
+</script>

@@ -1,0 +1,258 @@
+﻿@using Microsoft.AspNet.Identity
+@RenderSection("scripts", required: false)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>One Movies an Entertainment Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Content/contactstyle.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Content/faqstyle.css" type="text/css" media="all" />
+    <link href="~/Content/single.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/medile.css" rel='stylesheet' type='text/css' />
+    <!-- banner-slider -->
+    <link href="~/Content/jquery.slidey.min.css" rel="stylesheet">
+    <!-- //banner-slider -->
+    <!-- pop-up -->
+    <link href="~/Content/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //pop-up -->
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- banner-bottom-plugin -->
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                items: 5,
+                itemsDesktop: [640, 4],
+                itemsDesktopSmall: [414, 3]
+
+            });
+
+        });
+    </script>
+    <!-- //banner-bottom-plugin -->
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Scripts/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+</head>
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="w3layouts_logo">
+                <a href="@Url.Action("Index","Home")"><h1>IMDb</h1></a>
+            </div>
+            <div class="w3_search">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                {
+                    <input type="text" name="search" placeholder="Search" required="">
+                    <input type="submit" value="Search">
+                }
+            </div>
+            <div class="w3l_sign_in_register">
+                @*<ul>
+                        <li><a href="@Url.Action("Login", "Account")" data-toggle="modal" data-target="#myModal"><i class="fa fa-user"></i> Login</a></li>
+
+                    </ul>*@
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <ul>
+                        <li>Welcome : @User.Identity.GetUserName()</li>
+
+                        <li><a href="@Url.Action("Index","Profile")"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="javascript:document.getElementById('logoff').submit()"><i class="fa fa-sign-out"></i>LogOut</a></li>
+
+                    </ul>
+                }
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //header -->
+    <!-- nav -->
+    <div class="movies_nav">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header navbar-left">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <nav>
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="@Url.Action("Index","Home")">Home</a></li>
+
+                            <li>@Html.ActionLink("Edit Movies", "Index", "Movie")</li>
+
+                            <li>@Html.ActionLink("Edit Genre", "Index", "Genre")</li>
+
+                            <li>@Html.ActionLink("Edit Actors", "Index", "Actor")</li>
+                            <li>@Html.ActionLink("Edit Directors", "Index", "Director")</li>
+
+                            <li>@Html.ActionLink("Edit Countries", "Index", "Country")</li>
+
+                            <li>@Html.ActionLink("Manage Roles", "Index", "Role")</li>
+                            <li>@Html.ActionLink("Edit Users", "Index", "user")</li>
+                            <li>@Html.ActionLink("Edit UserRoles", "Index", "UserRoles")</li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- //nav -->
+
+
+    @RenderBody()
+
+
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="w3ls_footer_grid">
+                <div class="col-md-6 w3ls_footer_grid_left">
+                    @*<div class="w3ls_footer_grid_left1">
+                            <h2>Subscribe to us</h2>
+                            <div class="w3ls_footer_grid_left1_pos">
+                                <form action="#" method="post">
+                                    <input type="email" name="email" placeholder="Your email..." required="">
+                                    <input type="submit" value="Send">
+                                </form>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="col-md-6 w3ls_footer_grid_right">
+                    <a href="index.html"><h2>IMDb</h2></a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-5 w3ls_footer_grid1_left">
+            </div>
+            <div class="col-md-7 w3ls_footer_grid1_right">
+                @*<ul>
+                        <li>
+                            <a href="genres.html">Movies</a>
+                        </li>
+                        <li>
+                            <a href="faq.html">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="horror.html">Action</a>
+                        </li>
+                        <li>
+                            <a href="genres.html">Adventure</a>
+                        </li>
+                        <li>
+                            <a href="comedy.html">Comedy</a>
+                        </li>
+                        <li>
+                            <a href="icons.html">Icons</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>*@
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //footer -->
+
+    <script src="~/Scripts/jquery.slidey.js"></script>
+    <script src="~/Scripts/jquery.dotdotdot.min.js"></script>
+    <script type="text/javascript">
+        $("#slidey").slidey({
+            interval: 8000,
+            listCount: 5,
+            autoplay: false,
+            showList: true
+        });
+        $(".slidey-list-description").dotdotdot();
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+</body>
+</html>

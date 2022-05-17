@@ -1,0 +1,183 @@
+﻿@model IMDB.Models.ApplicationUser
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminPartial.cshtml";
+    }
+}
+<script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+@using (Html.BeginForm("Edit", "Profile", null, FormMethod.Post, new { enctype = "multipart/form-data" , id = "EditForm", onsubmit = "return(CheckForm());" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ApplicationUser</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(model => model.UserName)
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProfileImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.ProfileImage, new { htmlAttributes = new { @class = "form-control" } })
+                @*<img id="blah" src="@Model.ProfileImage" alt="your image" style="max-width: 180px;" />*@
+
+                <input id="CoverImage" title="Upload images" type="file" name="file" style="padding: 10px;" accept=".jpg, .jpeg, .png" />
+                <span class="field-validation-error text-danger" id="ImageValidation" style="display:none;"
+                      data-valmsg-for="Image"
+                      data-valmsg-replace="true">File extention should be (.png, .jpg, .jpeg)</span>
+                @Html.ValidationMessageFor(model => model.ProfileImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Movies", "Movies", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Movie", null,
+               htmlAttributes: new { @class = "form-control chosen-Actors", multiple = "multiple" })
+                @*@Html.ValidationMessageFor(model => model.Actor, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Director", "Director", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Director", null,
+               htmlAttributes: new { @class = "form-control chosen-Actors", multiple = "multiple" })
+                @*@Html.ValidationMessageFor(model => model.Director, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Actors", "Actors", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Actor", null,
+               htmlAttributes: new { @class = "form-control chosen-Actors", multiple = "multiple" })
+                @*@Html.ValidationMessageFor(model => model.Actor, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/chosen.jquery.js"></script>
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".chosen-Actors").chosen();
+
+    });
+</script>
+
+
+<script>
+    function CheckForm() {
+
+        var temp;
+        var fileUpload = $("#CoverImage").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        if ($("#EditForm").valid()) {
+
+            
+                if (i > 0) {
+                    $.ajax({
+                        async: false,
+                        global: false,
+                        type: "POST",
+                        url: "/Profile/CheckFileExtension",
+                        data: fileData,
+                        contentType: false, // Not to set any content header
+                        processData: false,
+                        success: function (response) {
+
+                            if (response.result == 1) {
+
+                                temp = true;
+                            }
+                            else {
+                                temp = false;
+                                $("#ImageValidation").show();
+
+                            }
+
+                        }
+
+
+
+                    })
+                    if (temp == true) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            
+        }
+        else {
+            
+            return false;
+        }
+
+
+
+    }
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

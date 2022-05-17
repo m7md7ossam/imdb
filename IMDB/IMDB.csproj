@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AADFD665-EFF5-4BBF-84CB-BA621F888477}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IMDB</RootNamespace>
+    <AssemblyName>IMDB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44311</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActorController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\DirectorController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRolesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204150003111_initial.cs" />
+    <Compile Include="Migrations\202204150003111_initial.designer.cs">
+      <DependentUpon>202204150003111_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204150340416_ProfileImage.cs" />
+    <Compile Include="Migrations\202204150340416_ProfileImage.designer.cs">
+      <DependentUpon>202204150340416_ProfileImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204151853599_LastName.cs" />
+    <Compile Include="Migrations\202204151853599_LastName.designer.cs">
+      <DependentUpon>202204151853599_LastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204151953258_aa.cs" />
+    <Compile Include="Migrations\202204151953258_aa.designer.cs">
+      <DependentUpon>202204151953258_aa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204151958019_bb.cs" />
+    <Compile Include="Migrations\202204151958019_bb.designer.cs">
+      <DependentUpon>202204151958019_bb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204152012539_dd.cs" />
+    <Compile Include="Migrations\202204152012539_dd.designer.cs">
+      <DependentUpon>202204152012539_dd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204152024563_ee.cs" />
+    <Compile Include="Migrations\202204152024563_ee.designer.cs">
+      <DependentUpon>202204152024563_ee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204152030039_ff.cs" />
+    <Compile Include="Migrations\202204152030039_ff.designer.cs">
+      <DependentUpon>202204152030039_ff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204161900026_yy.cs" />
+    <Compile Include="Migrations\202204161900026_yy.designer.cs">
+      <DependentUpon>202204161900026_yy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204161934310_yyaa.cs" />
+    <Compile Include="Migrations\202204161934310_yyaa.designer.cs">
+      <DependentUpon>202204161934310_yyaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204170428206_dsada.cs" />
+    <Compile Include="Migrations\202204170428206_dsada.designer.cs">
+      <DependentUpon>202204170428206_dsada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204180006076_dsasdsaf.cs" />
+    <Compile Include="Migrations\202204180006076_dsasdsaf.designer.cs">
+      <DependentUpon>202204180006076_dsasdsaf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204180453114_Review.cs" />
+    <Compile Include="Migrations\202204180453114_Review.designer.cs">
+      <DependentUpon>202204180453114_Review.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204182114034_LikeDislike.cs" />
+    <Compile Include="Migrations\202204182114034_LikeDislike.designer.cs">
+      <DependentUpon>202204182114034_LikeDislike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204191917020_saddadssad.cs" />
+    <Compile Include="Migrations\202204191917020_saddadssad.designer.cs">
+      <DependentUpon>202204191917020_saddadssad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204210608349_dsflmmvvv.cs" />
+    <Compile Include="Migrations\202204210608349_dsflmmvvv.designer.cs">
+      <DependentUpon>202204210608349_dsflmmvvv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204230225506_dffdfdf.cs" />
+    <Compile Include="Migrations\202204230225506_dffdfdf.designer.cs">
+      <DependentUpon>202204230225506_dffdfdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204230227371_dffdfdflkjn.cs" />
+    <Compile Include="Migrations\202204230227371_dffdfdflkjn.designer.cs">
+      <DependentUpon>202204230227371_dffdfdflkjn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204231919428_lmliko.cs" />
+    <Compile Include="Migrations\202204231919428_lmliko.designer.cs">
+      <DependentUpon>202204231919428_lmliko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204231945475_lmlikogd.cs" />
+    <Compile Include="Migrations\202204231945475_lmlikogd.designer.cs">
+      <DependentUpon>202204231945475_lmlikogd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204232102342_hiuigrhhu.cs" />
+    <Compile Include="Migrations\202204232102342_hiuigrhhu.designer.cs">
+      <DependentUpon>202204232102342_hiuigrhhu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204232206269_lvnvichn.cs" />
+    <Compile Include="Migrations\202204232206269_lvnvichn.designer.cs">
+      <DependentUpon>202204232206269_lvnvichn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204232216141_lvnvichnfd.cs" />
+    <Compile Include="Migrations\202204232216141_lvnvichnfd.designer.cs">
+      <DependentUpon>202204232216141_lvnvichnfd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240148409_kjhdsf.cs" />
+    <Compile Include="Migrations\202204240148409_kjhdsf.designer.cs">
+      <DependentUpon>202204240148409_kjhdsf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240232188_kjhdsfhhhgh.cs" />
+    <Compile Include="Migrations\202204240232188_kjhdsfhhhgh.designer.cs">
+      <DependentUpon>202204240232188_kjhdsfhhhgh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240255317_kjhdsfhhhghhhkl.cs" />
+    <Compile Include="Migrations\202204240255317_kjhdsfhhhghhhkl.designer.cs">
+      <DependentUpon>202204240255317_kjhdsfhhhghhhkl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240311353_kjnfdfygvcxcxcx.cs" />
+    <Compile Include="Migrations\202204240311353_kjnfdfygvcxcxcx.designer.cs">
+      <DependentUpon>202204240311353_kjnfdfygvcxcxcx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240313452_kjnfdfygvcxcxcxyt.cs" />
+    <Compile Include="Migrations\202204240313452_kjnfdfygvcxcxcxyt.designer.cs">
+      <DependentUpon>202204240313452_kjnfdfygvcxcxcxyt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240418270_mnbxkjnbxb.cs" />
+    <Compile Include="Migrations\202204240418270_mnbxkjnbxb.designer.cs">
+      <DependentUpon>202204240418270_mnbxkjnbxb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240421321_mnbxkjnbxbdhhd.cs" />
+    <Compile Include="Migrations\202204240421321_mnbxkjnbxbdhhd.designer.cs">
+      <DependentUpon>202204240421321_mnbxkjnbxbdhhd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240431122_mnbxkjnbxbdhhdh.cs" />
+    <Compile Include="Migrations\202204240431122_mnbxkjnbxbdhhdh.designer.cs">
+      <DependentUpon>202204240431122_mnbxkjnbxbdhhdh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240506417_nbvmxvcx.cs" />
+    <Compile Include="Migrations\202204240506417_nbvmxvcx.designer.cs">
+      <DependentUpon>202204240506417_nbvmxvcx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240526057_nbvmxvcxhhgyfhfh.cs" />
+    <Compile Include="Migrations\202204240526057_nbvmxvcxhhgyfhfh.designer.cs">
+      <DependentUpon>202204240526057_nbvmxvcxhhgyfhfh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240532272_nbvmxvcxhhgyfhfhdddsdsds.cs" />
+    <Compile Include="Migrations\202204240532272_nbvmxvcxhhgyfhfhdddsdsds.designer.cs">
+      <DependentUpon>202204240532272_nbvmxvcxhhgyfhfhdddsdsds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204240534274_asabcvctyudijds.cs" />
+    <Compile Include="Migrations\202204240534274_asabcvctyudijds.designer.cs">
+      <DependentUpon>202204240534274_asabcvctyudijds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204241958437_bbdgstds.cs" />
+    <Compile Include="Migrations\202204241958437_bbdgstds.designer.cs">
+      <DependentUpon>202204241958437_bbdgstds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204242002244_bbdgstdssssssssssssssss.cs" />
+    <Compile Include="Migrations\202204242002244_bbdgstdssssssssssssssss.designer.cs">
+      <DependentUpon>202204242002244_bbdgstdssssssssssssssss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204250359098_gkjnbvocibf.cs" />
+    <Compile Include="Migrations\202204250359098_gkjnbvocibf.designer.cs">
+      <DependentUpon>202204250359098_gkjnbvocibf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204250428076_sfkdfuiriewo.cs" />
+    <Compile Include="Migrations\202204250428076_sfkdfuiriewo.designer.cs">
+      <DependentUpon>202204250428076_sfkdfuiriewo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204250500496_poioioii.cs" />
+    <Compile Include="Migrations\202204250500496_poioioii.designer.cs">
+      <DependentUpon>202204250500496_poioioii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204251814258_hgjufydtfdhkgfd.cs" />
+    <Compile Include="Migrations\202204251814258_hgjufydtfdhkgfd.designer.cs">
+      <DependentUpon>202204251814258_hgjufydtfdhkgfd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204251908277_hgjufydtfdhkgfdhdfkugsiudf.cs" />
+    <Compile Include="Migrations\202204251908277_hgjufydtfdhkgfdhdfkugsiudf.designer.cs">
+      <DependentUpon>202204251908277_hgjufydtfdhkgfdhdfkugsiudf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204260400338_kjbfdsfsdiudgertgere4.cs" />
+    <Compile Include="Migrations\202204260400338_kjbfdsfsdiudgertgere4.designer.cs">
+      <DependentUpon>202204260400338_kjbfdsfsdiudgertgere4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Director.cs" />
+    <Compile Include="Models\FavoriteActor.cs" />
+    <Compile Include="Models\FavoriteDirector.cs" />
+    <Compile Include="Models\FavoriteMovie.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LikeDislikeMovie.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieActor.cs" />
+    <Compile Include="Models\MovieCountry.cs" />
+    <Compile Include="Models\MovieDirector.cs" />
+    <Compile Include="Models\MovieGenre.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ActorProfileViewModel.cs" />
+    <Compile Include="ViewModels\DirectorProfileViewModel.cs" />
+    <Compile Include="ViewModels\EditRoleViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\MovieCountryViewModel.cs" />
+    <Compile Include="ViewModels\MovieGenreViewModel.cs" />
+    <Compile Include="ViewModels\MovieProfileViewModel.cs" />
+    <Compile Include="ViewModels\MoviesActorsDirectorsViewModel.cs" />
+    <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\UserReviewViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\IMDB.mdf" />
+    <Content Include="App_Data\IMDB_log.ldf">
+      <DependentUpon>IMDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\basictable.css" />
+    <Content Include="Content\bootstrap-chosen.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\contactstyle.css" />
+    <Content Include="Content\faqstyle.css" />
+    <Content Include="Content\flexslider.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery.slidey.min.css" />
+    <Content Include="Content\list.css" />
+    <Content Include="Content\medile.css" />
+    <Content Include="Content\news-css.css" />
+    <Content Include="Content\news.css" />
+    <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\popuo-box.css" />
+    <Content Include="Content\single.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\table-style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\5.jpg" />
+    <Content Include="images\6.jpg" />
+    <Content Include="images\7.jpg" />
+    <Content Include="images\arrow.png" />
+    <Content Include="images\arrow1.png" />
+    <Content Include="images\c1.jpg" />
+    <Content Include="images\c10.jpg" />
+    <Content Include="images\c11.jpg" />
+    <Content Include="images\c12.jpg" />
+    <Content Include="images\c2.jpg" />
+    <Content Include="images\c3.jpg" />
+    <Content Include="images\c4.jpg" />
+    <Content Include="images\c5.jpg" />
+    <Content Include="images\c6.jpg" />
+    <Content Include="images\c7.jpg" />
+    <Content Include="images\c8.jpg" />
+    <Content Include="images\c9.jpg" />
+    <Content Include="images\h1-1.jpg" />
+    <Content Include="images\h1.jpg" />
+    <Content Include="images\h10.jpg" />
+    <Content Include="images\h11.jpg" />
+    <Content Include="images\h12.jpg" />
+    <Content Include="images\h2-1.jpg" />
+    <Content Include="images\h2.jpg" />
+    <Content Include="images\h3-1.jpg" />
+    <Content Include="images\h3.jpg" />
+    <Content Include="images\h4.jpg" />
+    <Content Include="images\h5.jpg" />
+    <Content Include="images\h6.jpg" />
+    <Content Include="images\h7.jpg" />
+    <Content Include="images\h8.jpg" />
+    <Content Include="images\h9.jpg" />
+    <Content Include="images\img-sp.png" />
+    <Content Include="images\m1.jpg" />
+    <Content Include="images\m10.jpg" />
+    <Content Include="images\m11.jpg" />
+    <Content Include="images\m12.jpg" />
+    <Content Include="images\m13.jpg" />
+    <Content Include="images\m14.jpg" />
+    <Content Include="images\m15.jpg" />
+    <Content Include="images\m16.jpg" />
+    <Content Include="images\m17.jpg" />
+    <Content Include="images\m18.jpg" />
+    <Content Include="images\m19.jpg" />
+    <Content Include="images\m2.jpg" />
+    <Content Include="images\m20.jpg" />
+    <Content Include="images\m21.jpg" />
+    <Content Include="images\m22.jpg" />
+    <Content Include="images\m23.jpg" />
+    <Content Include="images\m3.jpg" />
+    <Content Include="images\m4.jpg" />
+    <Content Include="images\m5.jpg" />
+    <Content Include="images\m6.jpg" />
+    <Content Include="images\m7.jpg" />
+    <Content Include="images\m8.jpg" />
+    <Content Include="images\m9.jpg" />
+    <Content Include="images\n1.jpg" />
+    <Content Include="images\n10.jpg" />
+    <Content Include="images\n11.jpg" />
+    <Content Include="images\n2.jpg" />
+    <Content Include="images\n3.jpg" />
+    <Content Include="images\n4.jpg" />
+    <Content Include="images\n5.jpg" />
+    <Content Include="images\n6.jpg" />
+    <Content Include="images\n7.jpg" />
+    <Content Include="images\n8.jpg" />
+    <Content Include="images\n9.jpg" />
+    <Content Include="images\new.gif" />
+    <Content Include="images\new.png" />
+    <Content Include="images\news1.jpg" />
+    <Content Include="images\play-button.png" />
+    <Content Include="images\Profile\user.png" />
+    <Content Include="images\user.jpg" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\easing.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery.basictable.min.js" />
+    <Content Include="Scripts\jquery.dotdotdot.min.js" />
+    <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.mobile.custom.min.js" />
+    <Content Include="Scripts\jquery.slidey.js" />
+    <Content Include="Scripts\jquery.tools.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\move-top.js" />
+    <Content Include="Scripts\owl.carousel.js" />
+    <Content Include="Scripts\simplePlayer.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial0.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Home\MovieGenre.cshtml" />
+    <Content Include="Views\Home\_Movie.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Home\MovieCountry.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\Actor\" />
+    <Folder Include="images\Director\" />
+    <Folder Include="images\Movie\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_RegisterPartial.cshtml" />
+    <Content Include="Views\Shared\_NavbarOnRole.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Shared\_AdminPartial.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\UserRoles\Index.cshtml" />
+    <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Movie\Edit.cshtml" />
+    <Content Include="Views\Actor\Index.cshtml" />
+    <Content Include="Views\Actor\Details.cshtml" />
+    <Content Include="Views\Actor\Create.cshtml" />
+    <Content Include="Views\Actor\Edit.cshtml" />
+    <Content Include="Views\Director\Index.cshtml" />
+    <Content Include="Views\Director\Details.cshtml" />
+    <Content Include="Views\Director\Create.cshtml" />
+    <Content Include="Views\Director\Edit.cshtml" />
+    <Content Include="Views\Movie\Create.cshtml" />
+    <Content Include="Views\Movie\MovieProfile.cshtml" />
+    <Content Include="Views\Movie\LikedMovies.cshtml" />
+    <Content Include="Views\Movie\DislikedMovies.cshtml" />
+    <Content Include="Views\Actor\ActorProfile.cshtml" />
+    <Content Include="Views\Director\DirectorProfile.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Movie\FavoriteMovies.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204150003111_initial.resx">
+      <DependentUpon>202204150003111_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204150340416_ProfileImage.resx">
+      <DependentUpon>202204150340416_ProfileImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204151853599_LastName.resx">
+      <DependentUpon>202204151853599_LastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204151953258_aa.resx">
+      <DependentUpon>202204151953258_aa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204151958019_bb.resx">
+      <DependentUpon>202204151958019_bb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204152012539_dd.resx">
+      <DependentUpon>202204152012539_dd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204152024563_ee.resx">
+      <DependentUpon>202204152024563_ee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204152030039_ff.resx">
+      <DependentUpon>202204152030039_ff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204161900026_yy.resx">
+      <DependentUpon>202204161900026_yy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204161934310_yyaa.resx">
+      <DependentUpon>202204161934310_yyaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204170428206_dsada.resx">
+      <DependentUpon>202204170428206_dsada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204180006076_dsasdsaf.resx">
+      <DependentUpon>202204180006076_dsasdsaf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204180453114_Review.resx">
+      <DependentUpon>202204180453114_Review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204182114034_LikeDislike.resx">
+      <DependentUpon>202204182114034_LikeDislike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204191917020_saddadssad.resx">
+      <DependentUpon>202204191917020_saddadssad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204210608349_dsflmmvvv.resx">
+      <DependentUpon>202204210608349_dsflmmvvv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204230225506_dffdfdf.resx">
+      <DependentUpon>202204230225506_dffdfdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204230227371_dffdfdflkjn.resx">
+      <DependentUpon>202204230227371_dffdfdflkjn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204231919428_lmliko.resx">
+      <DependentUpon>202204231919428_lmliko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204231945475_lmlikogd.resx">
+      <DependentUpon>202204231945475_lmlikogd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204232102342_hiuigrhhu.resx">
+      <DependentUpon>202204232102342_hiuigrhhu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204232206269_lvnvichn.resx">
+      <DependentUpon>202204232206269_lvnvichn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204232216141_lvnvichnfd.resx">
+      <DependentUpon>202204232216141_lvnvichnfd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240148409_kjhdsf.resx">
+      <DependentUpon>202204240148409_kjhdsf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240232188_kjhdsfhhhgh.resx">
+      <DependentUpon>202204240232188_kjhdsfhhhgh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240255317_kjhdsfhhhghhhkl.resx">
+      <DependentUpon>202204240255317_kjhdsfhhhghhhkl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240311353_kjnfdfygvcxcxcx.resx">
+      <DependentUpon>202204240311353_kjnfdfygvcxcxcx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240313452_kjnfdfygvcxcxcxyt.resx">
+      <DependentUpon>202204240313452_kjnfdfygvcxcxcxyt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240418270_mnbxkjnbxb.resx">
+      <DependentUpon>202204240418270_mnbxkjnbxb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240421321_mnbxkjnbxbdhhd.resx">
+      <DependentUpon>202204240421321_mnbxkjnbxbdhhd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240431122_mnbxkjnbxbdhhdh.resx">
+      <DependentUpon>202204240431122_mnbxkjnbxbdhhdh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240506417_nbvmxvcx.resx">
+      <DependentUpon>202204240506417_nbvmxvcx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240526057_nbvmxvcxhhgyfhfh.resx">
+      <DependentUpon>202204240526057_nbvmxvcxhhgyfhfh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240532272_nbvmxvcxhhgyfhfhdddsdsds.resx">
+      <DependentUpon>202204240532272_nbvmxvcxhhgyfhfhdddsdsds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204240534274_asabcvctyudijds.resx">
+      <DependentUpon>202204240534274_asabcvctyudijds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204241958437_bbdgstds.resx">
+      <DependentUpon>202204241958437_bbdgstds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204242002244_bbdgstdssssssssssssssss.resx">
+      <DependentUpon>202204242002244_bbdgstdssssssssssssssss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204250359098_gkjnbvocibf.resx">
+      <DependentUpon>202204250359098_gkjnbvocibf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204250428076_sfkdfuiriewo.resx">
+      <DependentUpon>202204250428076_sfkdfuiriewo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204250500496_poioioii.resx">
+      <DependentUpon>202204250500496_poioioii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251814258_hgjufydtfdhkgfd.resx">
+      <DependentUpon>202204251814258_hgjufydtfdhkgfd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251908277_hgjufydtfdhkgfdhdfkugsiudf.resx">
+      <DependentUpon>202204251908277_hgjufydtfdhkgfdhdfkugsiudf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204260400338_kjbfdsfsdiudgertgere4.resx">
+      <DependentUpon>202204260400338_kjbfdsfsdiudgertgere4.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49388</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44311/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

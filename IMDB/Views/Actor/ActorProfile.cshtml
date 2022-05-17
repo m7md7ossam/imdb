@@ -1,0 +1,140 @@
+﻿@model IMDB.ViewModels.ActorProfileViewModel
+@{
+    ViewBag.Title = "MovieProfile";
+}
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminPartial.cshtml";
+    }
+}
+
+<div class="single-page-agile-main">
+    <div class="container">
+        <!-- /w3l-medile-movies-grids -->
+        <div class="agileits-single-top">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li class="active">@Model.Actor.FirstName @Model.Actor.LastName</li>
+            </ol>
+        </div>
+        <div class="single-page-agile-info">
+            <!-- /movie-browse-agile -->
+            <div class="show-top-grids-w3lagile">
+                <div class="col-sm-8 single-left">
+                    <div class="song">
+                        <div class="song-info">
+                            <h3>@Model.Actor.FirstName @Model.Actor.LastName</h3>
+                        </div>
+                        <div class="video-grid-single-page-agileits">
+                            <div data-video="dLmKio67pVQ" id="video"> <img src="@Model.Actor.Image" alt="" class="img-responsive" /> </div>
+                        </div>
+                    </div>
+                    <div class="song-grid-right">
+                        <div class="share">
+                            <h5>Movies </h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+
+
+                </div>
+                <div class="col-md-4 single-right">
+                    <h3>Info</h3>
+                    <div class="single-grid-right">
+                        <div class="single-right-grids">
+
+                            <div class="col-md-8 single-right-grid-right">
+                                <h4><b>Name : </b>@Model.Actor.FirstName @Model.Actor.LastName</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+
+                        </div>
+                    </div>
+                    <div class="single-grid-right">
+                        <div class="single-right-grids">
+
+                            <div class="col-md-8 single-right-grid-right">
+
+                                <h4><b>Age : </b>@Model.Actor.Age</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+
+                        </div>
+                    </div>
+                    <div class="single-grid-right">
+                        <div class="single-right-grids">
+
+                            <div class="col-md-8 single-right-grid-right">
+                                <h4><b>Gender : </b>@Model.Actor.Gender</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <!-- //movie-browse-agile -->
+            <!--body wrapper start-->
+            <div class="banner-bottom">
+                <div class="container">
+                    <div class="w3_agile_banner_bottom_grid">
+                        <div id="owl-demo" class="owl-carousel owl-theme">
+
+                            @foreach (var item in Model.Movies)
+                            {
+                                <div class="item">
+
+                                    <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                                        <a href="@Url.Action("MovieProfile","Movie",new {id=item.id})" class="hvr-shutter-out-horizontal">
+                                            <img src="@item.Image" title="album-name" class="img-responsive" alt=" " />
+                                            <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                        </a>
+                                        <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                            <div class="w3l-movie-text">
+                                                <h6><a href="@Url.Action("MovieProfile","Movie",new {id=item.id})">@item.Name</a></h6>
+                                            </div>
+                                            <div class="mid-2 agile_mid_2_home">
+                                                <p>@item.Year</p>
+                                                <div class="block-stars">
+                                                    <ul class="w3l-ratings">
+
+                                                        <li><i>@item.Rank </i><a href="#"> <i class="fa fa-star" aria-hidden="true"></i></a></li>
+
+                                                    </ul>
+
+
+
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="ribben">
+                                            <p>NEW</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+
+        </div>
+        <!-- //w3l-latest-movies-grids -->
+    </div>
+</div>
+

@@ -1,0 +1,188 @@
+﻿@model IEnumerable<IMDB.Models.ApplicationUser>
+@using IMDB.Controllers
+
+@{
+    Layout = "~/Views/Shared/_AdminPartial.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+
+
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <img src="@item.ProfileImage" style="width:150px; border-radius:50%; " alt="" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+
+
+
+
+            <td>
+                @{
+                    if (((UserRolesController)this.ViewContext.Controller).IsAdmin(item.Id))
+                    {
+                        <button id="hide1_@item.Id" class="btn btn-primary" onclick="MakeAsUser('@item.Id')">Make As User</button>
+
+                        @*@Html.ActionLink("Make User", "MakeUser", new { id = item.Id })*@
+                    }
+                    else
+                    {
+                        <button id="hide2_@item.Id" class="btn btn-danger" onclick="MakeAsAdmin('@item.Id')">Make As Admin</button>
+
+                        @*@Html.ActionLink("Make Admin", "MakeAdmin", new { id = item.Id })*@
+                    }
+
+
+
+                    <button id="User_@item.Id" class="btn btn-primary" onclick="MakeAsUser('@item.Id')" style="display:none">Make As User</button>
+                    <button id="Admin_@item.Id" class="btn btn-danger" onclick="MakeAsAdmin('@item.Id')" style="display:none">Make As Admin</button>
+                }
+                @*@Html.ActionLink("Make Admin", "MakeAdmin", new { id = item.Id }) |
+        @Html.ActionLink("Make User", "MakeUser", new { id = item.Id })*@
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script>
+    function MakeAsUser(id) {
+        $("#hide1_" + id).hide();
+        $("#hide2_" + id).hide();
+
+        var IsAdmin;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/UserRoles/MakeUser/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/UserRoles/IsAdmin/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsAdmin = true;
+                        }
+                        else {
+                            IsAdmin = false;
+                        }
+
+                    }
+
+                })
+
+
+            }
+
+        })
+        $("#User_" + id).hide();
+        $("#Admin_" + id).hide();
+
+
+
+        if (IsAdmin == true) {
+            $("#User_" + id).show();
+        }
+        else {
+            $("#Admin_" + id).show();
+        }
+
+
+    }
+
+</script>
+
+<script>
+    function MakeAsAdmin(id) {
+        $("#hide1_" + id).hide();
+        $("#hide2_" + id).hide();
+
+        var IsAdmin;
+        $.ajax({
+            async: false,
+            global: false,
+            type: "GET",
+            url: "/UserRoles/MakeAdmin/" + id,
+            success: function (response) {
+
+                $.ajax({
+                    async: false,
+                    global: false,
+                    type: "GET",
+                    url: "/UserRoles/IsAdmin/" + id,
+                    success: function (response2) {
+
+                        if (response2 == "True") {
+                            IsAdmin = true;
+                        }
+                        else {
+                            IsAdmin = false;
+                        }
+
+                    }
+
+                })
+
+
+            }
+
+        })
+        $("#User_" + id).hide();
+        $("#Admin_" + id).hide();
+
+
+
+        if (IsAdmin == true) {
+            $("#User_" + id).show();
+        }
+        else {
+            $("#Admin_" + id).show();
+        }
+
+
+    }
+
+</script>

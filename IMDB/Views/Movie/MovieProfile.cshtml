@@ -1,0 +1,436 @@
+﻿@model IMDB.ViewModels.MovieProfileViewModel
+@{
+    ViewBag.Title = "MovieProfile";
+}
+
+@using Microsoft.AspNet.Identity;
+
+
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminPartial.cshtml";
+    }
+}
+<script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+
+<div class="single-page-agile-main">
+    <div class="container">
+        <!-- /w3l-medile-movies-grids -->
+        <div class="agileits-single-top">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li class="active">@Model.Movie.Name</li>
+            </ol>
+        </div>
+        <div class="single-page-agile-info">
+            <!-- /movie-browse-agile -->
+            <div class="show-top-grids-w3lagile">
+                <div class="col-sm-8 single-left">
+                    <div class="song">
+                        <div class="song-info">
+                            <h2><b>@Model.Movie.Name</b></h2>
+
+                        </div>
+                        <div class="video-grid-single-page-agileits">
+                            <div data-video="dLmKio67pVQ" id="video"> <img src="@Model.Movie.Image" alt="" class="img-responsive" /> </div>
+                        </div>
+                        <h4><b>Genre : </b> @Model.Genre.GenreName</h4>
+                        <h4><b>Country : </b> @Model.Country.CountryName</h4>
+                    </div>
+                    <div class="song-grid-right">
+                        <div class="share">
+
+                            <h5>Share this</h5>
+                            <div class="single-agile-shar-buttons">
+                                <ul>
+                                    <li>
+                                        <div class="fb-like" data-href="https://www.facebook.com/w3layouts" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                        <script>
+                                            (function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));</script>
+                                    </li>
+                                    <li>
+                                        <div class="fb-share-button" data-href="https://www.facebook.com/w3layouts" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fw3layouts&amp;src=sdkpreparse">Share</a></div>
+                                    </li>
+
+                                    <li>
+                                        <!-- Place this tag where you want the +1 button to render. -->
+                                        <div class="g-plusone" data-size="medium"></div>
+
+                                        <!-- Place this tag after the last +1 button tag. -->
+                                        <script type="text/javascript">
+                                            (function () {
+                                                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                                po.src = 'https://apis.google.com/js/platform.js';
+                                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                            })();
+                                        </script>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+
+                    <div class="all-comments" id="Comments">
+                        <div class="all-comments-info">
+
+
+                            <a href="#"><i class="fa fa-comments"></i><i>  </i>Comments</a>
+                            <div class="agile-info-wthree-box">
+
+                                <form id="New">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="name" id="UserId" value="@User.Identity.GetUserId()" />
+                                    <input type="hidden" name="name" id="UserName" value="@User.Identity.GetUserName()" />
+                                    @Html.HiddenFor(model => model.Movie.id)
+                                    <textarea placeholder="Message" required="" name="Comment" id="Message"></textarea>
+                                    <br />
+                                    <button class="btn btn-primary" type="button" id="Save">Save</button>
+                                    <div class="clearfix"> </div>
+                                </form>
+
+                                @*@using (Html.BeginForm("AddReview", "Review", null, FormMethod.Post, new {id = "AddForm5" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="name" id="UserId" value="@User.Identity.GetUserId()" />
+                                    <input type="hidden" name="name" id="UserName" value="@User.Identity.GetUserName()" />
+                                    @Html.HiddenFor(model=> model.Movie.id);
+                                    <textarea placeholder="Message" required="" name="Comment" id="Message"></textarea>
+                                    <input type="submit" value="SEND">
+                                    <div class="clearfix"> </div>
+                                }*@
+
+
+                                @*<form>
+                                        <input type="text" placeholder="Name" required="">
+                                        <input type="text" placeholder="Email" required="">
+                                        <input type="text" placeholder="Phone" required="">
+                                        <textarea placeholder="Message" required=""></textarea>
+                                        <input type="submit" value="SEND">
+                                        <div class="clearfix"> </div>
+                                    </form>*@
+                            </div>
+                        </div>
+
+                        @foreach (var item in Model.Reviews)
+                        {
+                            <div class="media-grids">
+                                <div class="media">
+                                    <h5>@item.User.UserName</h5>
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="@item.User.ProfileImage" title="One movies" alt=" " style="width:70px;" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>@item.Reviews.Comment</p>
+                                        <p><i class="fa fa-calendar-o"></i> <b>@item.Reviews.CommentDate</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+                <div class="col-md-4 single-right">
+                    <h3><b>Cast</b></h3>
+                    <div class="single-grid-right">
+                        <div class="single-right-grids">
+                            <div class="col-md-4 single-right-grid-left">
+                                <a href="@Url.Action("DirectorProfile","Director",new {id=Model.Director.Id})"><img src="@Model.Director.Image" alt="" /></a>
+                            </div>
+                            <div class="col-md-8 single-right-grid-right">
+                                <a href="@Url.Action("DirectorProfile","Director",new {id=Model.Director.Id})" class="title"> @Model.Director.FirstName @Model.Director.LastName</a>
+                                <p class="author"><a href="@Url.Action("DirectorProfile","Director",new {id=Model.Director.Id})" class="author">Director</a></p>
+                                @*<p class="views">2,114,200 views</p>*@
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+
+                    </div>
+
+                    @foreach (var item in Model.Actors)
+                    {
+                        <div class="single-grid-right">
+                            <div class="single-right-grids">
+                                <div class="col-md-4 single-right-grid-left">
+                                    <a href="@Url.Action("ActorProfile","Actor",new {id=item.Id})"><img src="@item.Image" alt="" /></a>
+                                </div>
+                                <div class="col-md-8 single-right-grid-right">
+                                    <a href="@Url.Action("ActorProfile","Actor",new {id=item.Id})" class="title"> @item.FirstName @item.LastName</a>
+                                    <p class="author"><a href="@Url.Action("ActorProfile","Actor",new {id=item.Id})" class="author">Actor</a></p>
+                                    @*<p class="views">2,114,200 views</p>*@
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+
+                        </div>
+                    }
+
+
+                </div>
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <!-- //movie-browse-agile -->
+            <!--body wrapper start-->
+            <div class="w3_agile_banner_bottom_grid">
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                    @foreach (var item in Model.movies)
+                    {
+                        <div class="item">
+                            <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                                <a href="@Url.Action("MovieProfile","Movie",new {id=item.id})" class="hvr-shutter-out-horizontal">
+                                    <img src="@item.Image" title="album-name" class="img-responsive" alt=" " />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                    <div class="w3l-movie-text">
+                                        <h6><a href="@Url.Action("MovieProfile","Movie",new {id=item.id})">@item.Name</a></h6>
+                                    </div>
+                                    <div class="mid-2 agile_mid_2_home">
+                                        <p>@item.Year</p>
+                                        <div class="block-stars">
+                                            <ul class="w3l-ratings">
+                                                <li><i>@item.Rank </i><a href="#"> <i class="fa fa-star" aria-hidden="true"></i></a></li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="ribben">
+                                    <p>NEW</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+
+        </div>
+        <!-- //w3l-latest-movies-grids -->
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#Save").click(function () {
+
+            if ($("#New").valid()) {
+                UserId = $("#UserId").val();
+                UserName = $("#UserName").val();
+                Message = $("#Message").val();
+                myData = $("#New").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Review/AddReview",
+                    data: myData,
+                    success: function (response) {
+
+                        if (response.result == 1) {
+                            var now = new Date();
+                            var AmOrPm;
+                            var hour;
+                            if (now.getHours() >= 12) {
+                                hour = now.getHours() - 12;
+                                AmOrPm = "PM";
+                            }
+                            else {
+                                AmOrPm = "AM";
+                            }
+                            var time = " " + (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear() + " "
+                                + hour + ":" + now.getMinutes() + ":" + now.getSeconds() + " " + AmOrPm;
+                            $.ajax({
+                                async: false,
+                                global: false,
+                                type: "POST",
+                                url: "/User/GetProfileImage/" + UserId,
+                                contentType: false, // Not to set any content header
+                                processData: false,
+                                success: function (response2) {
+
+                                    $("#Comments").append( '<div class="media-grids">'+'\n'
+                                                                + '<div class= "media">' +'\n' 
+                                                                        +'<h5>' + UserName + '</h5>' +'\n'
+                                                                        +'<div class="media-left">' +'\n'
+                                                                        +'<a href="#">'+'\n'
+                                                                             + '<img src="' + response2 + '" title="One movies" alt=" " style="width:70px;" />' +'\n'
+                                                                        +'</a>'+'\n'
+
+                                                                + ' </div >'+'\n'
+                                                                + '<div class="media-body">'+'\n'
+                                                                        + '<p>' + Message + '</p>' +'\n'
+                                                                        + '<p><i class="fa fa-calendar-o"></i><b>' + time+'</b> </p>'+'\n'
+                                                                 +'</div>' +'\n'
+                                                                +'</div >' +'\n'
+                                                            +'</div >'+'\n');
+
+
+
+                                }
+
+
+
+                            })
+                        }
+                        else {
+
+                        }
+
+                    }
+
+
+
+                })
+                $("#Message").val('');
+            }
+        })
+
+    })
+
+</script>
+
+
+<script>
+    function CheckForm() {
+        UserId = $("#UserId").val();
+        UserName = $("#UserName").val();
+        Message = $("#Message").val();
+
+
+
+        var temp;
+
+        if ($("#AddForm5").valid()) {
+            myData = $("#AddForm5").serialize();
+            $.ajax({
+                async: false,
+                global: false,
+                type: "POST",
+                url: "/Review/AddReview",
+                data: myData,
+                contentType: false, // Not to set any content header
+                processData: false,
+                success: function (response) {
+
+                    if (response.result == 1) {
+                        $("#success").show(1000);
+                        $("#success").hide(1000);
+                    }
+                    else {
+                        $("#fail").show(1000);
+                        $("#fail").hide(1000);
+                    }
+
+                }
+
+
+
+            })
+            //$.ajax({
+            //    async: false,
+            //    global: false,
+            //    type: "POST",
+            //    url: "/User/GetProfileImage/" + UserId,
+            //    contentType: false, // Not to set any content header
+            //    processData: false,
+            //    success: function (response2) {
+
+            //        $("#Comments").append();
+
+
+
+            //    }
+
+
+
+            //})
+            
+            //if (temp == true) {
+            //    return true;
+            //}
+
+           
+
+        }
+        else {
+
+            return false;
+        }
+
+
+
+    }
+</script>
+
+
+@*<script>
+    function CheckForm() {
+        UserId = $("#UserId").val();
+        UserName = $("#UserName").val();
+        Message = $("#Message").val();
+
+
+
+
+        if ($("#AddForm").valid()) {
+
+            $.ajax({
+                async: false,
+                global: false,
+                type: "POST",
+                url: "/User/GetProfileImage/" + UserId,
+                contentType: false, // Not to set any content header
+                processData: false,
+                success: function (response2) {
+
+                    $("#Comments").append();
+
+
+
+                }
+
+
+
+            })
+           
+
+
+
+        }
+        else {
+
+            return false;
+        }
+
+
+
+    }
+</script>*@
